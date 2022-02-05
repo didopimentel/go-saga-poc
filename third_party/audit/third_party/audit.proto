@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package wls.api;
+
+import "google/protobuf/descriptor.proto";
+
+option go_package = "google.golang.org/genproto/googleapis/api/annotations";
+
+message Audit {
+  string entity_id_path = 1;
+  string entity_type = 2;
+}
+
+extend google.protobuf.MethodOptions {
+  Audit audit = 50001;
+}

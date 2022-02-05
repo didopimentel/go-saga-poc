@@ -1,0 +1,7 @@
+version: v1beta1
+build:
+  roots:
+    - proto
+    - third_party/audit
+    - third_party/googleapis
+    - third_party/grpc_gateway

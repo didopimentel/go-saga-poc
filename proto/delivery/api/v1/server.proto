@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package delivery.api.v1;
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/struct.proto";
+
+option go_package = "github.com/go-saga-proc/protos/delivery/protogen/api/v1";
+
+// API to serve all Events Manager endpoints.
+service DeliveryAPI {
+  // Smallest request that needs no auth and returns 200.
+  rpc GetHealth(GetHealthRequest) returns (GetHealthResponse) {}
+
+  rpc CreateDelivery(CreateDeliveryRequest) returns (CreateDeliveryResponse) {}
+}
+
+
+message GetHealthRequest {}
+
+message GetHealthResponse {}
+
+
+message CreateDeliveryRequest {
+  int64 order_id = 1;
+}
+
+message CreateDeliveryResponse {
+  int64 id = 1;
+  int64 order_id = 2;
+}

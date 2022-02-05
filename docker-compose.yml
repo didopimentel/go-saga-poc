@@ -1,0 +1,19 @@
+version: "3.3"
+
+services:
+  postgres:
+    container_name: events-manager-postgres
+    image: postgres:11-alpine
+    command: postgres -c max_connections=1000
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: "trust"
+      POSTGRES_DB: go-saga-poc
+      POSTGRES_USER: ps_user
+      POSTGRES_PASSWORD: ps_password
+      POSTGRES_HOST: postgres
+    ports:
+      - 7002:5432
+    entrypoint: >
+      sh -c "echo 'CREATE DATABASE \"go-saga-poc-test\"' > \
+         /docker-entrypoint-initdb.d/docker_prostgres_init.sql \
+         && docker-entrypoint.sh postgres"

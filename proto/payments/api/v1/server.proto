@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package payments.api.v1;
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/struct.proto";
+
+option go_package = "github.com/go-saga-proc/protos/payments/protogen/api/v1";
+
+// API to serve all Events Manager endpoints.
+service PaymentsAPI {
+  // Smallest request that needs no auth and returns 200.
+  rpc GetHealth(GetHealthRequest) returns (GetHealthResponse) {}
+
+  rpc CreatePayment(CreatePaymentRequest) returns (CreatePaymentResponse) {}
+  rpc DeletePayment(DeletePaymentRequest) returns (DeletePaymentResponse) {}
+}
+
+
+message GetHealthRequest {}
+
+message GetHealthResponse {}
+
+
+message CreatePaymentRequest {
+  int64 order_id = 1;
+}
+
+message CreatePaymentResponse {
+  int64 id = 1;
+  int64 order_id = 2;
+}
+
+message DeletePaymentRequest {
+  int64 id = 1;
+}
+
+message DeletePaymentResponse {
+}
